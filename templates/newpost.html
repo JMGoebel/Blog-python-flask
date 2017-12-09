@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+<h1>Creat a new post!</h1>
+<form method='POST' name='create_post'>
+    <label>Title: <input type="text" name='title' value='{{title}}'/></label>{{errors.title}}<br />
+    <label>Body: <input type="textarea" name='body' value='{{body}}'/></label>{{errors.body}}<br />
+    <input type="submit" value='Add Task' />
+</form>
+
+{% endblock %}
