@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -11,7 +12,9 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), unique=True, nullable=False)
-    body = db.Column(db.String(20000), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    created_on = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    edited_on = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     def __init__(self, title, body):
         self.title = title
