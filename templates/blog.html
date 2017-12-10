@@ -4,17 +4,27 @@
     
     {% if posts|length == 0 %}
 
-    <p>No post yet</p>
+      <p>No post yet</p>
 
     {% else %}
-
-        <ul>
-            {% for post in posts %}
-            <li><a href="/blog?id={{post.id}}">{{post.title}}</a></li>
-            <p>{{post.body}}</p>
-            {% endfor %}
-        </ul>
-
+    {% for post in posts %}
+      <div class="row">
+        <div class="col s12 m6 offset-m3">
+          <a href="/blog?id={{post.id}}">
+            <div class="card hoverable blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">{{post.title}}</span>
+                <p>{{post.body}}</p>
+              </div>
+              <div class="card-action">
+                <p>created on: {{post.created_on}}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+        
     {% endif %}
 
 {% endblock %}

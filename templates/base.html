@@ -1,17 +1,28 @@
 <!doctype html>
 <html>
   <head>
-    <title>PyMicroBlog | {{location}}</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='normalize.css') }}">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='skeleton.css') }}">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='main.css') }}">
+    <title>PyBlog | {{location}}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/materialize.min.css') }}">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
   </head>
   <body>
-    <a href="/blog">View Post</a>
-    <a href="/newpost">New Post</a>
-    {% block content %}
-    {% endblock %}
+    <div class="row orange z-depth-2">
+      <div class="col s2">
+        <a href="/blog"><h1>PyBlog</h1></a>
+      </div>
+      <div class="col s10">
+        <a class="waves-effect waves-light btn-medium" href="/newpost"><i class="material-icons left">cloud</i>New Post</a>
+      </div>
+    </div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
 
   </body>
 </html>
