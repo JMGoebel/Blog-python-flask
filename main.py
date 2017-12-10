@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
+
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blog_app_user:{}@jasongoebel.com:3306/blog_app_db'.format('f1nc53pM6fz0apb7ms')
@@ -26,12 +27,14 @@ def is_valid(field):
 
 def sort_data(sort_on=None, sort_direction='asc'):
     if sort_on:
-        return Blog.query.order_by(getattr(getattr(Blog, sort_on), sort_direction)()).all()
+        result = Blog.query.order_by(getattr(getattr(Blog, sort_on), sort_direction)()).all()
+        return result
     return Blog.query.all()
 
 def get_post(get_by='id', target=''):
     if get_by=='id':
-        return Blog.query.get(target)
+        result = Blog.query.get(target)
+        return result
 
 @app.route('/')
 def index():
@@ -53,10 +56,9 @@ def newpost():
             return render_template('newpost.html', location="New Post",  title=post_title, body=post_body, errors=errors)
 
         new_post = Blog(post_title, post_body)
-
         db.session.add(new_post)
         db.session.commit()
-        print(new_post.id)
+
         return redirect('/blog?id={}'.format(new_post.id))
 
     return render_template('newpost.html', location="New Post", errors=errors)
@@ -64,16 +66,15 @@ def newpost():
 @app.route('/blog', methods=['GET'])
 def blog():
     posts = sort_data('id', 'desc')
-    
+
     if 'id' in request.args:
+        # If id is not an int just return all entries
         try:
             index = int(request.args['id'])
             if index > 0 and len(posts) > index-1:
                 return render_template('showpost.html', location="All Post", post=get_post('id', index))
         except:
             pass
-
-
 
     return render_template('blog.html', location="All Post", posts=posts)
 
