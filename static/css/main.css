@@ -1,0 +1,37 @@
+.inline-block {
+  display: inline-block;
+}
+
+.card .card-image .card-title {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 90%;
+  padding: 0px 10px;
+}
+
+.card .card-title {
+  padding: 24px 10px;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.card .card-content {
+  padding: 10px;
+}
+
+.card .card-date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1px 5px;
+}
+
+.btn-large {
+  height: 54px;
+  line-height: 54px;
+  width: 180px;
+  margin: 10px 0 0 20px;
+  top: 24px;
+}

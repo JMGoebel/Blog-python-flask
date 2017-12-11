@@ -7,24 +7,26 @@
       <p>No post yet</p>
 
     {% else %}
-    {% for post in posts %}
       <div class="row">
-        <div class="col s12 m6 offset-m3">
+    {% for post in posts %}
+        <div class="col s12 m6 l3">
           <a href="/blog?id={{post.id}}">
-            <div class="card hoverable blue-grey darken-1">
-              <div class="card-content white-text">
-                <span class="card-title">{{post.title}}</span>
+            <div class="card small hoverable">
+              <div class="card-image">
+                {% set photo = post.image|string %}
+                <img src="data:image/jpeg;base64,{{photo[2:-1]}}">
+                <span class="card-date grey darken-4">{{post.created_on}}</span>
+                <span class="card-title truncate">{{post.title}}</span>
+              </div>
+              <div class="card-content">
                 <p>{{post.body}}</p>
               </div>
-              <div class="card-action">
-                <p>created on: {{post.created_on}}</p>
-              </div>
             </div>
-          </a>
+            </a>
         </div>
-      </div>
     {% endfor %}
-        
+      </div>
     {% endif %}
 
 {% endblock %}
+
