@@ -8,6 +8,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blog_app_user:{}@jasongoebel.com:3306/blog_app_db'.format('f1nc53pM6fz0apb7ms')
 app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_POOL_RECYCLE']=1
 db = SQLAlchemy(app)
 http = urllib3.PoolManager()
 
